@@ -4097,6 +4097,13 @@ endfunction
 " window. Used after entering a tab. If this is not done, then the folds
 " are not properly created for taglist windows displayed in multiple tabs.
 function! s:Tlist_Refresh_Folds()
+
+    " Added this patch as directed at
+    " http://vim.1045645.n5.nabble.com/Taglist-error-Error-detected-while-processing-function-lt-SNR-gt-29-Tlist-Refresh-Folds-td3319079.html
+    if g:Tlist_Show_One_File
+        return
+    endif
+
     let winnum = bufwinnr(g:TagList_title)
     if winnum == -1
         return
